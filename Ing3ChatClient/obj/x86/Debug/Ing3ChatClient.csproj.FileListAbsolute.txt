@@ -1,0 +1,4 @@
+C:\Users\alain\Desktop\Ing3Chat\Ing3ChatClient\bin\Debug\Ing3ChatClient.exe
+C:\Users\alain\Desktop\Ing3Chat\Ing3ChatClient\bin\Debug\Ing3ChatClient.pdb
+C:\Users\alain\Desktop\Ing3Chat\Ing3ChatClient\obj\x86\Debug\Ing3ChatClient.exe
+C:\Users\alain\Desktop\Ing3Chat\Ing3ChatClient\obj\x86\Debug\Ing3ChatClient.pdb
