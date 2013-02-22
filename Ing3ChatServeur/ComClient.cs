@@ -33,7 +33,16 @@ namespace Ing3ChatServeur
 
         public void Recevoir()
         {
+            try
+            {
 
+            }
+            while (true)
+            {
+                byte[] buffer = new byte[256];
+                int taille = socketCom.Receive(buffer);
+                string message = Encoding.ASCII.GetString(buffer, 0, taille);
+            }
         }
 
         public void Envoyer(string message)
