@@ -50,8 +50,8 @@ namespace Ing3ChatServeur
                     {
                         message = this.pseudo + ": " + message;
 
-                        Thread threadEnvoi = new Thread(new ParameterizedThreadStart(Program.EnvoyerATous));
-                        threadEnvoi.Start(message);
+                        Thread thEnvoi = new Thread(new ParameterizedThreadStart(Program.EnvoyerATous));
+                        thEnvoi.Start(message);
                         Console.WriteLine(message );
                     }
                     
@@ -65,7 +65,8 @@ namespace Ing3ChatServeur
 
         public void Envoyer(string message)
         {
-
+            byte[] buffer = Encoding.ASCII.GetBytes(message);
+            this.SocketCom.Send(buffer);
         }
     }
 }

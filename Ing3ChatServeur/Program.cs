@@ -44,19 +44,26 @@ namespace Ing3ChatServeur
                 Socket socketNouveauClient = sockServeur.Accept();
                 Console.WriteLine("Client connecté");
                 ComClient client = new ComClient(socketNouveauClient);
-                clients.Add(client);
+                lock (client)
+                {
+                    clients.Add(client);
+                }
                 Thread th = new Thread(new ThreadStart(client.Recevoir));
                 th.Start();
             }
-
-           
-
             Console.ReadLine();
         }
 
         public static void EnvoyerATous(object message)
         {
-            
+            //le fait de faire lock permet de proteger la variable clients pendant le foreach
+            lock (clients)
+            {
+                foreach (ComClient ce in clients)
+                {
+                    ce.Envoyer((string)message);
+                }
+            }
         }
     }
 }
