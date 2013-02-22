@@ -53,5 +53,10 @@ namespace Ing3ChatServeur
 
             Console.ReadLine();
         }
+
+        public static void EnvoyerATous(object message)
+        {
+            
+        }
     }
 }

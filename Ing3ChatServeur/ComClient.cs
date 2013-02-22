@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace Ing3ChatServeur
 {
@@ -35,13 +36,30 @@ namespace Ing3ChatServeur
         {
             try
             {
+                while (true)
+                {
+                    byte[] buffer = new byte[256];
+                    int taille = socketCom.Receive(buffer);
+                    string message = Encoding.ASCII.GetString(buffer, 0, taille);
+                    if (message.StartsWith("P_"))
+                    {
+                        this.pseudo = message.Substring(2);
+                        message = this.pseudo + "vient de se connecter";
+                    }
+                    else
+                    {
+                        message = this.pseudo + ": " + message;
 
+                        Thread threadEnvoi = new Thread(new ParameterizedThreadStart(Program.EnvoyerATous));
+                        threadEnvoi.Start(message);
+                        Console.WriteLine(message );
+                    }
+                    
+                }
             }
-            while (true)
+            catch (Exception)
             {
-                byte[] buffer = new byte[256];
-                int taille = socketCom.Receive(buffer);
-                string message = Encoding.ASCII.GetString(buffer, 0, taille);
+                
             }
         }
 
