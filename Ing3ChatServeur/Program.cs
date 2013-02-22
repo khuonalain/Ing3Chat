@@ -27,6 +27,12 @@ namespace Ing3ChatServeur
 
             IPEndPoint iep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 2013);
 
+            //permet de faire la liaison entre la socket et le point de terminaison
+            sockServeur.Bind(iep);
+
+            //socket à l'écoute
+            sockServeur.Listen(10);
+
             Console.ReadLine();
         }
     }
