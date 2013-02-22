@@ -30,5 +30,15 @@ namespace Ing3ChatServeur
         {
             this.socketCom = s;
         }
+
+        public void Recevoir()
+        {
+
+        }
+
+        public void Envoyer(string message)
+        {
+
+        }
     }
 }

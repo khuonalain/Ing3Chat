@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace Ing3ChatServeur
 {
@@ -32,6 +33,23 @@ namespace Ing3ChatServeur
 
             //socket à l'écoute
             sockServeur.Listen(10);
+            Console.WriteLine("Socket à l'écoute");
+
+            //Pour tester: telnet 127.0.0.1 2013
+            while (true)
+            {
+                Console.WriteLine("En attente d'une nouvelle connexion");
+                //Sockserveur est un socket qui ne fait qu'écouter
+                //sockServeur.Accept();
+                Socket socketNouveauClient = sockServeur.Accept();
+                Console.WriteLine("Client connecté");
+                ComClient client = new ComClient(socketNouveauClient);
+                clients.Add(client);
+                Thread th = new Thread(new ThreadStart(client.Recevoir));
+                th.Start();
+            }
+
+           
 
             Console.ReadLine();
         }
